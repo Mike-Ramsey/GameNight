@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Nav, Navbar, Container } from 'react-bootstrap';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import './App.css';
+import CalendarPage from './components/CalendarPage';
+import GamesPage from './components/GamesPage';
+import HomePage from './components/HomePage';
+import PlayersPage from './components/PlayersPage';
 
-function App() {
+
+export default function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+        <Navbar.Brand>GameNight</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link as={NavLink} to="/" >Home</Nav.Link>
+          <Nav.Link as={NavLink} to="/games/">Games</Nav.Link>
+          <Nav.Link as={NavLink} to="/players/">Players</Nav.Link>
+          <Nav.Link as={NavLink} to="/calendar/">Calendar</Nav.Link>
+        </Nav>
+        </Container>
+      </Navbar>
+      <Container>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/games/" element={<GamesPage />} />
+          <Route path="/players/" element={<PlayersPage />} />
+          <Route path="/calendar/" element={<CalendarPage />} />
+        </Routes>
+      </Container>
+    </>
   );
-}
-
-export default App;
+};
