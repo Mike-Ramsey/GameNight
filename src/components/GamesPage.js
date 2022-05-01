@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getGames, createGame, deleteGame, updateGame } from '../services/GameService';
+import { createGame, deleteGame, updateGame } from '../services/GameService';
 import CreateGameForm from './CreateGameForm';
 import EditGameForm from './EditGameForm';
 import GameCardList from './GameCardList';
 
-export default function GamesPage() {
-  const [gameList, setGameList] = useState([]);
+export default function GamesPage({ gameList, refreshGames }) {
   const initialGame = { title: '', minPlayers: '', maxPlayers: '' };
   const [editGame, setEditGame] = useState(false);
   const [currentGame, setCurrentGame] = useState(initialGame);
-
-  const refreshGames = async () => {
-    const freshGames = await getGames();
-    setGameList((freshGames) ? freshGames : [] );
-  };
 
   useEffect(() => {
     refreshGames();
@@ -39,8 +33,6 @@ export default function GamesPage() {
     setCurrentGame(initialGame);
     refreshGames();
   };
-
-
 
   return (
     <>

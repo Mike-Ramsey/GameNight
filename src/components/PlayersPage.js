@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { createPlayer, deletePlayer, getPlayers, updatePlayer } from '../services/PlayerService';
+import { createPlayer, deletePlayer, updatePlayer } from '../services/PlayerService';
 import CreatePlayerForm from './CreatePlayerForm'
 import EditPlayerForm from './EditPlayerForm';
 import PlayerCardList from './PlayerCardList'
 
-export default function PlayersPage() {
-  const [playerList, setPlayerList] = useState([]);
+export default function PlayersPage({ playerList, refreshPlayer }) {
   const initialPlayer = { name: '', email: '', phone: '' };
   const [editPlayer, setEditPlayer] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(initialPlayer);
-
-  const refreshPlayer = async () => {
-    const freshPlayers = await getPlayers();
-    setPlayerList((freshPlayers) ? freshPlayers : [] );
-  };
 
   useEffect(() => {
     refreshPlayer();
@@ -39,8 +33,6 @@ export default function PlayersPage() {
     setCurrentPlayer(initialPlayer);
     refreshPlayer();
   };
-
-
 
   return (
     <>
