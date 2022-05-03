@@ -43,7 +43,13 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
         <Form.Group>
           <Form.Label>Add Players</Form.Label>
           {playerList.map((player) => (
-            <Form.Check type='checkbox' key={player.id} value={player.id} label={player.name} />
+            <Form.Check type='checkbox' key={player.id} value={sessionPlayers} label={player.name} onChange={(e) => {
+              if (e.target.checked) {
+                setSessionPlayers([ ...sessionPlayers, player.id ]);               
+              } else {
+                setSessionPlayers(sessionPlayers.filter((e) => e.id === player.id));
+              }
+            }} />
           ))}
         </Form.Group>
         <br/> 

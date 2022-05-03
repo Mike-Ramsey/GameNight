@@ -4,7 +4,7 @@ import CreateSessionForm from './CreateSessionForm';
 import EditSessionForm from './EditSessionForm';
 import SessionCardList from './SessionCardList';
 
-export default function HomePage({ gameList, playerList, sessionList, refreshSessions, refreshGames }) {
+export default function HomePage({ gameList, playerList, sessionList, refreshSessions, refreshGames, refreshPlayers }) {
   const initialSession = { date: '', players: [], game: '', notes: '' };
   const [editSession, setEditSession] = useState(false);
   const [currentSession, setCurrentSession] = useState(initialSession);
@@ -12,6 +12,7 @@ export default function HomePage({ gameList, playerList, sessionList, refreshSes
   useEffect(() => {
     refreshSessions();
     refreshGames();
+    refreshPlayers();
   }, []);
 
   const handleAddSession = async (newSession) => {

@@ -45,7 +45,7 @@ export default function App() {
       </Navbar>
       <Container>
         <Routes>
-          <Route path="/" element={<HomePage gameList={gameList} playerList={playerList} sessionList={sessionList} refreshSessions={refreshSessions} refreshGames={refreshGames} />} />
+          <Route path="/" element={<HomePage gameList={gameList} playerList={playerList} sessionList={sessionList} refreshSessions={refreshSessions} refreshGames={refreshGames} refreshPlayers={refreshPlayers}/>} />
           <Route path="/games/" element={<GamesPage gameList={gameList} refreshGames={refreshGames} />} />
           <Route path="/players/" element={<PlayersPage playerList={playerList} refreshPlayers={refreshPlayers} />} />
           <Route path="/calendar/" element={<CalendarPage gameList={gameList} playerList={playerList}/>} />
