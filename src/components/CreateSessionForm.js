@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Dropdown, DropdownButton, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 export default function CreateSessionForm({ addSession, gameList, playerList }) {
   const [sessionDate, setSessionDate] = useState('');
@@ -25,14 +25,14 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
   return (
     <div className='row my-3'>
       <h3>Schedule a GameNight!</h3>
-      <Form>
+      <Form id='session-form'>
         <Form.Group>
           <Form.Label>Session Date</Form.Label>
           <Form.Control type='date' value={sessionDate} onChange={(e) => setSessionDate(e.target.value)} />
         </Form.Group>
         <br/>
         <Form.Select onChange={(e) => setSessionGame(e.target.value)}>
-          <option>Select a Game</option>
+          <option >Select a Game</option>
           {gameList.map((game) => (
             <option key={game.id} value={game.id}>
               {game.title}:  {game.minPlayers}-{game.maxPlayers} players
@@ -45,9 +45,9 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
           {playerList.map((player) => (
             <Form.Check type='checkbox' key={player.id} value={sessionPlayers} label={player.name} onChange={(e) => {
               if (e.target.checked) {
-                setSessionPlayers([ ...sessionPlayers, player.id ]);               
+                setSessionPlayers([ ...sessionPlayers, player]);               
               } else {
-                setSessionPlayers(sessionPlayers.filter((e) => e.id === player.id));
+                setSessionPlayers(sessionPlayers.filter((e) => e.id !== player.id));
               }
             }} />
           ))}
