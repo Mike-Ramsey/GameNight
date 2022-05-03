@@ -4,23 +4,23 @@ import CreatePlayerForm from './CreatePlayerForm'
 import EditPlayerForm from './EditPlayerForm';
 import PlayerCardList from './PlayerCardList'
 
-export default function PlayersPage({ playerList, refreshPlayer }) {
+export default function PlayersPage({ playerList, refreshPlayers }) {
   const initialPlayer = { name: '', email: '', phone: '' };
   const [editPlayer, setEditPlayer] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(initialPlayer);
 
   useEffect(() => {
-    refreshPlayer();
+    refreshPlayers();
   }, []);
 
   const handleAddPlayer = async (newPlayer) => {
     await createPlayer(newPlayer);  
-    refreshPlayer();
+    refreshPlayers();
   };
 
   const handleDeletePlayer = async (player) => {   
     await deletePlayer(player);
-    refreshPlayer();
+    refreshPlayers();
   };
    
   const startEditPlayer = (player) => {
@@ -31,7 +31,7 @@ export default function PlayersPage({ playerList, refreshPlayer }) {
   const handleEditPlayer = async (currentPlayer) => {
     await updatePlayer({ ...currentPlayer, name: currentPlayer.name, email: currentPlayer.email, phone: currentPlayer.phone });
     setCurrentPlayer(initialPlayer);
-    refreshPlayer();
+    refreshPlayers();
   };
 
   return (

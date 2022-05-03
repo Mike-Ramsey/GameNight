@@ -35,11 +35,11 @@ export default function CreateGameForm({ addGame }) {
           <Form.Label>Max Players</Form.Label>
           <Form.Control type='text' value={gameMaxPlayers} onChange={(e) => setGameMaxPlayers(e.target.value)} placeholder='Enter max number of players' />
         </Form.Group>
-        <Form.Group controlId='formFile'>
+        <Form.Group>
           <Form.Label>Instructions</Form.Label>
           <Form.Control type='file'  />
         </Form.Group>
-        <Form.Group controlId='formFile'>
+        <Form.Group>
           <Form.Label>Game Image</Form.Label>
           <Form.Control type='file'  />
         </Form.Group>

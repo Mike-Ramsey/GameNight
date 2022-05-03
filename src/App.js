@@ -8,19 +8,26 @@ import HomePage from './components/HomePage';
 import PlayersPage from './components/PlayersPage';
 import { getGames } from './services/GameService';
 import { getPlayers } from './services/PlayerService';
+import { getSessions } from './services/SessionService';
 
 export default function App() {
   const [gameList, setGameList] = useState([]);
   const [playerList, setPlayerList] = useState([]);
+  const [sessionList, setSessionList] = useState([]);
 
   const refreshGames = async () => {
     const freshGames = await getGames();
     setGameList((freshGames) ? freshGames : [] );
   };
 
-  const refreshPlayer = async () => {
+  const refreshPlayers = async () => {
     const freshPlayers = await getPlayers();
     setPlayerList((freshPlayers) ? freshPlayers : [] );
+  };
+
+  const refreshSessions = async () => {
+    const freshSessions = await getSessions();
+    setSessionList((freshSessions) ? freshSessions : [] );
   };
 
   return (
@@ -38,9 +45,9 @@ export default function App() {
       </Navbar>
       <Container>
         <Routes>
-          <Route path="/" element={<HomePage gameList={gameList} playerList={playerList}/>} />
+          <Route path="/" element={<HomePage gameList={gameList} playerList={playerList} sessionList={sessionList} refreshSessions={refreshSessions} refreshGames={refreshGames} />} />
           <Route path="/games/" element={<GamesPage gameList={gameList} refreshGames={refreshGames} />} />
-          <Route path="/players/" element={<PlayersPage playerList={playerList} refreshPlayer={refreshPlayer} />} />
+          <Route path="/players/" element={<PlayersPage playerList={playerList} refreshPlayers={refreshPlayers} />} />
           <Route path="/calendar/" element={<CalendarPage gameList={gameList} playerList={playerList}/>} />
         </Routes>
       </Container>
