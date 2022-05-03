@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 
 export default function CreateSessionForm({ addSession, gameList, playerList }) {
   const [sessionDate, setSessionDate] = useState('');
+  const [sessionTime, setSessionTime] = useState('');
   const [sessionPlayers, setSessionPlayers] = useState([]);
   const [sessionGame, setSessionGame] = useState('');
   const [sessionNotes, setSessionNotes] = useState('');  
@@ -11,12 +12,14 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
     event.preventDefault();
     const newSession = {
       date: sessionDate,
+      time: sessionTime,
       players: sessionPlayers,
       game: sessionGame,
       notes: sessionNotes
     };
     addSession(newSession);
     setSessionDate('');
+    setSessionTime('');
     setSessionPlayers([]);
     setSessionGame('');
     setSessionNotes('');
@@ -27,21 +30,22 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
       <h3>Schedule a GameNight!</h3>
       <Form id='session-form'>
         <Form.Group>
-          <Form.Label>Session Date</Form.Label>
-          <Form.Control type='date' value={sessionDate} onChange={(e) => setSessionDate(e.target.value)} />
+          <Form.Label>Session Date and Time</Form.Label>
+          <Form.Control size='sm' type='date' value={sessionDate} onChange={(e) => setSessionDate(e.target.value)} />
+          <Form.Control size='sm' type='time' value={sessionTime} onChange={(e) => setSessionTime(e.target.value)} />
         </Form.Group>
         <br/>
-        <Form.Select onChange={(e) => setSessionGame(e.target.value)}>
-          <option >Select a Game</option>
+        <Form.Label>Choose a Game</Form.Label>
+        <Form.Select size='sm' onChange={(e) => setSessionGame(e.target.value)}>
           {gameList.map((game) => (
-            <option key={game.id} value={game.id}>
+            <option key={game.id} value={game.title}>
               {game.title}:  {game.minPlayers}-{game.maxPlayers} players
             </option>
           ))}
         </Form.Select>
         <br/> 
         <Form.Group>
-          <Form.Label>Add Players</Form.Label>
+          <Form.Label>Choose Players</Form.Label>
           {playerList.map((player) => (
             <Form.Check type='checkbox' key={player.id} value={sessionPlayers} label={player.name} onChange={(e) => {
               if (e.target.checked) {
