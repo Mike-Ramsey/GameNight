@@ -30,6 +30,8 @@ export default function App() {
     setSessionList((freshSessions) ? freshSessions : [] );
   };
 
+  sessionList.sort((a, b) => new Date (b.date) - new Date (a.date));
+  
   return (
     <>
       <Navbar bg="dark" variant="dark">

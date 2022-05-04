@@ -1,16 +1,21 @@
-import React from 'react'
-import { Button, Card, ListGroup } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Card, ListGroup, Modal } from 'react-bootstrap'
 
 export default function SessionCard({ session, onStartEditSession, onDeleteSession }) {
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
-    <Card style={{ width: '18rem' }} bg={'light'} text={'dark'}>
+    <Card bg={'light'} text={'dark'}>
       <Card.Body>
-        <Card.Title>{session.game} GameNight!</Card.Title>
+        <Card.Header as='h4'>{session.game}</Card.Header>
+        <br/>
         <Card.Text>
-          {session.date} at {session.time}
+          Date: {session.date}<br/>
+          Time: {session.time}
           <br/>
           <br/>
           With featured guests:
@@ -21,12 +26,26 @@ export default function SessionCard({ session, onStartEditSession, onDeleteSessi
             <ListGroup.Item key={index}>{player.name}</ListGroup.Item>
           )
         })}
-        </ListGroup>        
+        </ListGroup>
+        <br/>
+        <Button variant='primary' size='sm' onClick={handleShow}>Notes</Button>
+        <br/>
         <br/>
         <Button variant='success' size='sm' onClick={() => onStartEditSession(session)}>Edit</Button>{' '}
         <Button variant="danger" size='sm' onClick={() => onDeleteSession(session)} >Delete</Button>
       </Card.Body>
     </Card>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Notes</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {session.notes}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant='secondary' onClick={handleClose}>Close</Button>
+      </Modal.Footer>
+    </Modal>
     </>
   )
 }
