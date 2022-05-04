@@ -11,7 +11,7 @@ export default function GameCard({ game, onStartEditGame, onDeleteGame }) {
 
   return (
     <>
-    <Card style={{ width: '18rem' }} bg={'light'} text={'dark'} >
+    <Card  bg='light' text='dark' border='dark'>
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title>{game.title}</Card.Title>

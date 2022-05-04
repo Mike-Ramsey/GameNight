@@ -9,7 +9,7 @@ export default function SessionCard({ session, onStartEditSession, onDeleteSessi
 
   return (
     <>
-    <Card bg={'light'} text={'dark'}>
+    <Card bg='light' text='dark' border='dark'>
       <Card.Body>
         <Card.Header as='h4'>{session.game}</Card.Header>
         <br/>
