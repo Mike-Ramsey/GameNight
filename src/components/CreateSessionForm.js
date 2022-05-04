@@ -27,7 +27,7 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
 
   return (
     <div className='row my-3'>
-      <h3>Schedule a GameNight!</h3>
+      <h3>Schedule a Game Night</h3>
       <Form id='session-form'>
         <Form.Group>
           <Form.Label>Session Date and Time</Form.Label>
@@ -63,9 +63,7 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
           <Form.Control as='textarea' rows={3} value={sessionNotes} onChange={(e) => setSessionNotes(e.target.value)}/>
         </Form.Group>
         <Button variant='primary' size='sm my-3' onClick={handleAddSession} >Add Session</Button>
-      </Form>
-
-    
+      </Form>   
     </div>
   )
 }

@@ -5,7 +5,7 @@ export default function PlayerCardList({ playerList, onStartEditPlayer, onEditPl
   return (
     <div className='row'>
       { playerList.map(player => (
-        <div className='col-md-4 my-2' key={player.id}>
+        <div className='col-md-3 my-2' key={player.id}>
           <PlayerCard player={player} onStartEditPlayer={onStartEditPlayer} onEditPlayer={onEditPlayer} onDeletePlayer={onDeletePlayer} />
         </div>
       ))}

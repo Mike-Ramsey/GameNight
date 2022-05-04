@@ -37,7 +37,7 @@ export default function SessionCard({ session, onStartEditSession, onDeleteSessi
     </Card>
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Notes</Modal.Title>
+        <Modal.Title>Notes for {session.date}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {session.notes}
