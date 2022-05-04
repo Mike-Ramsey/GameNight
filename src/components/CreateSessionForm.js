@@ -6,8 +6,8 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
   const [sessionTime, setSessionTime] = useState('');
   const [sessionPlayers, setSessionPlayers] = useState([]);
   const [sessionGame, setSessionGame] = useState('');
-  const [sessionNotes, setSessionNotes] = useState('');  
-
+  const [sessionNotes, setSessionNotes] = useState('');
+ 
   const handleAddSession = (event) => {
     event.preventDefault();
     const newSession = {
@@ -37,6 +37,7 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
         <br/>
         <Form.Label>Choose a Game</Form.Label>
         <Form.Select size='sm' onChange={(e) => setSessionGame(e.target.value)}>
+          <option>-</option>
           {gameList.map((game) => (
             <option key={game.id} value={game.title}>
               {game.title}:  {game.minPlayers}-{game.maxPlayers} players
@@ -47,7 +48,7 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
         <Form.Group>
           <Form.Label>Choose Players</Form.Label>
           {playerList.map((player) => (
-            <Form.Check type='checkbox' key={player.id} value={sessionPlayers} label={player.name} onChange={(e) => {
+            <Form.Check type='checkbox' key={player.id}  label={player.name} onChange={(e) => {
               if (e.target.checked) {
                 setSessionPlayers([ ...sessionPlayers, player]);               
               } else {
