@@ -39,6 +39,7 @@ export default function CreateGameForm({ addGame }) {
           <Form.Label>Instructions</Form.Label>
           <Form.Control type='file'  />
         </Form.Group>
+        <br/>
         <Form.Group>
           <Form.Label>Game Image</Form.Label>
           <Form.Control type='file'  />
