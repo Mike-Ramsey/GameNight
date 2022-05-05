@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import './App.css';
-import CalendarPage from './components/CalendarPage';
 import GamesPage from './components/GamesPage';
 import HomePage from './components/HomePage';
 import PlayersPage from './components/PlayersPage';
@@ -41,7 +40,6 @@ export default function App() {
           <Nav.Link as={NavLink} to="/" >Home</Nav.Link>
           <Nav.Link as={NavLink} to="/games/">Games</Nav.Link>
           <Nav.Link as={NavLink} to="/players/">Players</Nav.Link>
-          <Nav.Link as={NavLink} to="/calendar/">Calendar</Nav.Link>
         </Nav>
         </Container>
       </Navbar>
@@ -50,7 +48,6 @@ export default function App() {
           <Route path="/" element={<HomePage gameList={gameList} playerList={playerList} sessionList={sessionList} refreshSessions={refreshSessions} refreshGames={refreshGames} refreshPlayers={refreshPlayers}/>} />
           <Route path="/games/" element={<GamesPage gameList={gameList} refreshGames={refreshGames} />} />
           <Route path="/players/" element={<PlayersPage playerList={playerList} refreshPlayers={refreshPlayers} />} />
-          <Route path="/calendar/" element={<CalendarPage gameList={gameList} playerList={playerList}/>} />
         </Routes>
       </Container>
     </>

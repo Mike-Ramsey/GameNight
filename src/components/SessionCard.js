@@ -1,3 +1,4 @@
+import Moment from 'moment';
 import React, { useState } from 'react'
 import { Button, Card, ListGroup, Modal } from 'react-bootstrap'
 
@@ -7,6 +8,9 @@ export default function SessionCard({ session, onStartEditSession, onDeleteSessi
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const date = Moment(session.date).format('MMM Do YYYY');
+  const time = Moment(session.time, 'HH:mm').format('h:mm a')
+
   return (
     <>
     <Card bg='light' text='dark' border='dark'>
@@ -14,8 +18,8 @@ export default function SessionCard({ session, onStartEditSession, onDeleteSessi
         <Card.Header as='h4'>{session.game}</Card.Header>
         <br/>
         <Card.Text>
-          Date: {session.date}<br/>
-          Time: {session.time}
+          {date}<br/>
+          {time}
           <br/>
           <br/>
           With featured guests:

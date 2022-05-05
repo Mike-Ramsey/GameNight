@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { isPossiblePhoneNumber } from 'libphonenumber-js/core';
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import PhoneInput from 'react-phone-number-input/input';
+import 'react-phone-number-input/style.css';
 
 export default function EditPlayerForm({ currentPlayer, setEditPlayer, handleEditPlayer }) {
-
   const [player, setPlayer] = useState(currentPlayer);
   const [playerName, setPlayerName] = useState(currentPlayer.name);
   const [playerEmail, setPlayerEmail] = useState(currentPlayer.email);
@@ -20,7 +22,7 @@ export default function EditPlayerForm({ currentPlayer, setEditPlayer, handleEdi
       phone: playerPhone
     });
     setEditPlayer(false);
-  }
+  };
 
   return (
     <div className="row my-3">
@@ -35,7 +37,8 @@ export default function EditPlayerForm({ currentPlayer, setEditPlayer, handleEdi
         </Form.Group>
         <Form.Group className='mb-3'>
           <Form.Label>Phone Number</Form.Label>
-          <Form.Control type='text' value={playerPhone} onChange={(e) => setPlayerPhone(e.target.value)} placeholder='Enter phone number' />
+          <br/>
+          <PhoneInput country='US' placeholder='Enter phone number' value={playerPhone} onChange={setPlayerPhone} />
         </Form.Group>
         <br/>
         <Button variant='primary' size='sm' onClick={update}>Save Changes</Button>{'  '}

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
+import PhoneInput from 'react-phone-number-input/input';
+import 'react-phone-number-input/style.css';
 
 export default function CreatePlayerForm({ addPlayer }) {  
 const [playerName, setPlayerName] = useState('');
 const [playerEmail, setPlayerEmail] = useState('');
-const [playerPhone, setPlayerPhone] = useState('');
+const [playerPhone, setPlayerPhone] = useState();
 
 const handleAddPlayer = (event) => {
   event.preventDefault();
@@ -17,7 +19,7 @@ const handleAddPlayer = (event) => {
   addPlayer(newPlayer);
   setPlayerName('');
   setPlayerEmail('');
-  setPlayerPhone('');
+  setPlayerPhone();
 };
 
 return (
@@ -33,7 +35,8 @@ return (
       </Form.Group>
       <Form.Group className='mb-3'>
         <Form.Label>Phone Number</Form.Label>
-        <Form.Control type='text' value={playerPhone} onChange={(e) => setPlayerPhone(e.target.value)} placeholder='Enter phone number' />
+        <br/>
+        <PhoneInput value={playerPhone} onChange={setPlayerPhone} placeholder='Enter phone number'/>
       </Form.Group>
       <br/>
       <Button variant='primary' size='sm' onClick={handleAddPlayer}>Add Player</Button>

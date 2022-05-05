@@ -5,7 +5,7 @@ import EditSessionForm from './EditSessionForm';
 import SessionCardList from './SessionCardList';
 
 export default function HomePage({ gameList, playerList, sessionList, refreshSessions, refreshGames, refreshPlayers }) {
-  const initialSession = { date: '', players: [], game: '', notes: '' };
+  const initialSession = { date: '', time: '', players: [], game: '', notes: '' };
   const [editSession, setEditSession] = useState(false);
   const [currentSession, setCurrentSession] = useState(initialSession);
 

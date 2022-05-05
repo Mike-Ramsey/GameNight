@@ -28,7 +28,7 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
   return (
     <div className='row my-3'>
       <h3>Schedule a Game Night</h3>
-      <Form id='session-form'>
+      <Form>
         <Form.Group>
           <Form.Label>Session Date and Time</Form.Label>
           <Form.Control size='sm' type='date' value={sessionDate} onChange={(e) => setSessionDate(e.target.value)} />
@@ -45,8 +45,8 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
           ))}
         </Form.Select>
         <br/> 
-        <Form.Group>
-          <Form.Label>Choose Players</Form.Label>
+        <Form.Label>Choose Players</Form.Label>
+        <Form.Group className='overflow-auto' style={{'height' : '150px'}} >   
           {playerList.map((player) => (
             <Form.Check type='checkbox' key={player.id}  label={player.name} onChange={(e) => {
               if (e.target.checked) {
@@ -55,7 +55,7 @@ export default function CreateSessionForm({ addSession, gameList, playerList }) 
                 setSessionPlayers(sessionPlayers.filter((e) => e.id !== player.id));
               }
             }} />
-          ))}
+          ))} 
         </Form.Group>
         <br/> 
         <Form.Group>
