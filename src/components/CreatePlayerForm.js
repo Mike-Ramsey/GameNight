@@ -36,7 +36,7 @@ return (
       <Form.Group className='mb-3'>
         <Form.Label>Phone Number</Form.Label>
         <br/>
-        <PhoneInput value={playerPhone} onChange={setPlayerPhone} placeholder='Enter phone number'/>
+        <PhoneInput country='US' value={playerPhone} onChange={setPlayerPhone} placeholder='Enter phone number'/>
       </Form.Group>
       <br/>
       <Button variant='primary' size='sm' onClick={handleAddPlayer}>Add Player</Button>
